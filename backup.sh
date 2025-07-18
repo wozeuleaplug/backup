@@ -19,9 +19,15 @@ fi
 # Create the backup using rsync and ensure that files deleted from the source are also deleted in the backup.
 # Use option –-delete
 
-# Write code here...
-# ..
-# .
+# Створення мітки часу
+timestamp=$(date +"%Y%m%d_%H%M%S")
+
+# Повна адреса до каталогу призначення з міткою часу
+backup_path="$destination_directory/backup_$timestamp"
+
+# Виконання резервного копіювання з використанням rsync
+rsync -av --delete "$source_directory/" "$backup_path"
+
 
 # Check the rsync exit status
 if [ $? -eq 0 ]; then
